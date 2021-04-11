@@ -1,0 +1,22 @@
+<%-- any content can be specified here e.g.: --%>
+
+Rafael Caetano Teixeira
+
+<%@ page pageEncoding="UTF-8" %>
+<h2>Login</h2>
+
+<%
+    if(request.getParameter("set")!=null){
+        session.setAttribute("session.name", request.getParameter("name"));
+        response.sendRedirect(request.getRequestURI());
+    }
+%>
+
+        <%if(session.getAttribute("session.name")!=null){%>
+            <div>Bem vindo <%= session.getAttribute("session.name") %></div>
+        <%}%>
+
+        <form>
+            <input type="text" name="name"/>
+            <input type="submit" name="set" value="Set"/>
+        </form>
