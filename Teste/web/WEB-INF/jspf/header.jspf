@@ -1,0 +1,34 @@
+<%-- any content can be specified here e.g.: --%>
+
+<h2>Rafael</h2>
+<hr>
+<br>
+
+    <% if(request.getParameter("session.user") != null) {
+        session.setAttribute("session.user", request.getParameter("session.user"));// o if vai ver se o valor é diferente de 0, ai ele vai guardar o valor no parametro dessa sessão
+        response.sendRedirect(request.getRequestURI());// o resquest vai acabar escondendo a url
+
+    } else if(request.getParameter("session.sair") != null) {
+        session.removeAttribute("session.user");
+        response.sendRedirect(request.getRequestURI());
+    }
+%>
+
+    <% if(session.getAttribute("session.user") !=null) {%>
+        <form>
+        <p>Usuario: <%= session.getAttribute("session.user") %></p>
+        <a href="index.jsp">Página Inicial</a>
+        <a href="disciplinas.jsp">Disciplinas</a> <br/><br/>
+        <input type="submit" name="session.sair" value="Sair"/>
+    </form>
+
+    <% }else{ %>
+
+    <form>
+        Usuario: <input type="text" name="session.user" />
+        <input type="submit" name="session.entrar" value="Entrar" />
+    </form>
+
+<% } %>
+
+<br> <hr>
